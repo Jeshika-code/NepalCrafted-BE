@@ -1,0 +1,2 @@
+//The dotenv package is a great way to keep passwords, API keys, and other sensitive data out of your code. It allows you to create environment variables in a .env file instead of putting them in your code.
+
