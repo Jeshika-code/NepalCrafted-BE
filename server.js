@@ -7,7 +7,7 @@ process.on("uncaughtException", (err) => {
     console.log(`Shutting down the server due to Uncaught Exception`);
     process.exit(1);
   });
-dotenv.config({path:"backend/config/config.env"});
+dotenv.config({path:"config/config.env"});
 //databaseconnect
 connectDatabase();
 
