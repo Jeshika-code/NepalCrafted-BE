@@ -56,9 +56,7 @@ exports.newOrder = catchAsyncError(async (req, res, next) => {
       success: true,
       orders,
     });
-  });
-  
-
+  })
   //admin get all orders
   // get all Orders -- Admin
 exports.getAllOrders = catchAsyncError(async (req, res, next) => {
