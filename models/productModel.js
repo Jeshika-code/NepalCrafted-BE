@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const productsSchema = new mongoose.Schema({
+const productSchema = new mongoose.Schema({
   name: {
     type: String,
     required: [true, "Please enter product name"],
@@ -56,7 +56,7 @@ const productsSchema = new mongoose.Schema({
         required: true,
       },
       rating: {
-        type: String,
+        type: Number,
         required: true,
       },
       comment: {
@@ -76,4 +76,4 @@ const productsSchema = new mongoose.Schema({
     default: "Unknown",
   },
 });
-module.exports = mongoose.model("Product", productsSchema);
+module.exports = mongoose.model("Product", productSchema);
