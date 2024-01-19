@@ -27,6 +27,7 @@ exports.createProduct = catchAsyncError(async (req, res, next) => {
   }
   req.body.images = imagesLinks;
   req.body.user = req.user.id;
+  req.body.createdBy = req.user.id;
   const product = await Product.create(req.body);
   res.status(201).json({
     success: true,
@@ -61,8 +62,8 @@ exports.getAllProducts = catchAsyncError(async (req, res) => {
 });
 //get products-admin
 exports.getAdminProducts = catchAsyncError(async (req, res, next) => {
-  const products = await Product.find();
-
+  const products = await Product.find({ createdBy: req.user.id });
+  
   res.status(200).json({
     success: true,
     products,

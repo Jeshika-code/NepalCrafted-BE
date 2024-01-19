@@ -71,9 +71,14 @@ const productSchema = new mongoose.Schema({
     ref: "User",
     required: true,
   },
-  MadeBy: {
-    type: String,
-    default: "Unknown",
+  // MadeBy: {
+  //   type: String,
+  //   default: "Unknown",
+  // },
+  createdBy: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+    required: true,
   },
 });
 module.exports = mongoose.model("Product", productSchema);
