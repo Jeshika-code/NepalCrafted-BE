@@ -37,6 +37,9 @@ const userSchema = new mongoose.Schema({
     type: String,
     default: "user",
   }, 
+
+  
+
   resetPasswordToken: String,
   resetPasswordExpire: Date,
 });
@@ -76,3 +79,18 @@ userSchema.methods.getResetPasswordToken = function () {
   return resetToken;
 };
 module.exports = mongoose.model("User", userSchema);
+
+
+// ratings: [{ 
+//   productId: {
+//     type: mongoose.Schema.Types.ObjectId,
+//     ref: 'Product',
+//     required: true
+//   },
+//   rating: {
+//     type: Number,
+//     required: true,
+//     min: 1,
+//     max: 5
+//   }
+// }],

@@ -3,6 +3,8 @@ const ErrorHandler = require("../utils/errorhandler");
 const catchAsyncError = require("../middleware/catchAsyncError");
 const ApiFeatures = require("../utils/apifeatures");
 const cloudinary=require("cloudinary");
+
+
 //create product --admin
 exports.createProduct = catchAsyncError(async (req, res, next) => {
   let images = [];
@@ -215,6 +217,8 @@ exports.createProductReview = catchAsyncError(async (req, res, next) => {
     success: true,
   });
 });
+
+
 // Get All Reviews of a product
 exports.getProductReviews = catchAsyncError(async (req, res, next) => {
   const product = await Product.findById(req.query.id);

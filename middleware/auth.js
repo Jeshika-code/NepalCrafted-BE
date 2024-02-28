@@ -2,19 +2,39 @@ const ErrorHandler = require("../utils/errorhandler");
 const catchAsyncError = require("./catchAsyncError");
 const jwt = require("jsonwebtoken");
 const User = require("../models/userModels");
+// exports.isAuthenticatedUser = catchAsyncError(async (req, res, next) => {
+//   const { token } = req.cookies;
+//   if (!token) {
+//     return next(new ErrorHandler("Please Login to access this resource", 401));
+//   }
+
+//   const decodedData = jwt.verify(token, process.env.JWT_SECRET);
+
+//   req.user = await User.findById(decodedData.id);
+
+//   next();
+// });
+
 exports.isAuthenticatedUser = catchAsyncError(async (req, res, next) => {
-  const { token } = req.cookies;
+  const token = req.header('Authorization');
+
+  // Check if not token
   if (!token) {
     return next(new ErrorHandler("Please Login to access this resource", 401));
   }
 
-  const decodedData = jwt.verify(token, process.env.JWT_SECRET);
+  try {
+    // Verify token
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    // Find user by token payload
+    console.log('Decoded Token:', decoded);
 
-  req.user = await User.findById(decodedData.id);
-
-  next();
+    req.user = await User.findById(decoded.id);
+    next();
+  } catch (err) {
+    return next(new ErrorHandler('Token is not valid', 401));
+  }
 });
-
 exports.authorizeRoles = (...roles) => {
   return (req, res, next) => {
     if (!roles.includes(req.user.role)) {
@@ -29,3 +49,4 @@ exports.authorizeRoles = (...roles) => {
     next();
   };
 };
+// authMiddleware.js
