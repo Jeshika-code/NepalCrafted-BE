@@ -33,6 +33,11 @@ const userSchema = new mongoose.Schema({
       required: true,
     },
   },
+  verificationToken: String, // New field for verification token
+  isVerified: {
+    type: Boolean,
+    default: false,
+  },
   role: {
     type: String,
     default: "user",

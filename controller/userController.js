@@ -7,8 +7,7 @@ const sendToken = require("../utils/jwtToken");
 const sendEmail = require("../utils/sendEmail.js");
 const crypto = require("crypto");
 const cloudinary = require("cloudinary");
-
-//register user
+// //register user
 exports.registerUser = catchAsyncError(async (req, res, next) => {
   const myCloud = await cloudinary.v2.uploader.upload(req.body.avatar, {
     folder: "avatars",
@@ -27,6 +26,9 @@ exports.registerUser = catchAsyncError(async (req, res, next) => {
   });
   sendToken(user, 201, res);
 });
+
+// Register user and send verification email
+
 //login user
 exports.loginUser = catchAsyncError(async (req, res, next) => {
   const { email, password } = req.body;

@@ -25,7 +25,7 @@ app.use("/api/v1",product);
 app.use("/api/v1",user)
 app.use("/api/v1",order);
 app.use("/api/v1",payment);
-// app.use("/api",recommendation);
+app.use("/api",recommendation);
 //middleware for errors
 app.use(errorMiddleware);
 // API endpoint for recommendations

@@ -1,23 +1,21 @@
-// utils/cosineSimilarity.js// utils/cosineSimilarity.js
-
-// function dotProduct(vecA, vecB) {
-//     return vecA.reduce((acc, ratingA, index) => acc + ratingA * vecB[index], 0);
-//   }
-  
-//   function magnitude(vec) {
-//     return Math.sqrt(vec.reduce((acc, rating) => acc + rating * rating, 0));
-//   }
-  
-//   function cosineSimilarity(vecA, vecB) {
-//     const dotProd = dotProduct(vecA, vecB);
-//     const magA = magnitude(vecA);
-//     const magB = magnitude(vecB);
-//     return dotProd / (magA * magB);
-//   }
-  
-//   module.exports = { cosineSimilarity };
-  
 // utils/cosineSimilarity.js
 
-// Function to compute cosine similarity between two vectors
-
+const calculateCosineSimilarity = (vectorA, vectorB) => {
+    // Calculate dot product
+    let dotProduct = 0;
+    for (let i = 0; i < vectorA.length; i++) {
+      dotProduct += vectorA[i].rating * vectorB[i].rating;
+    }
+  
+    // Calculate magnitudes
+    const magnitudeA = Math.sqrt(vectorA.reduce((acc, curr) => acc + curr.rating ** 2, 0));
+    const magnitudeB = Math.sqrt(vectorB.reduce((acc, curr) => acc + curr.rating ** 2, 0));
+  
+    // Calculate cosine similarity
+    const cosineSimilarity = dotProduct / (magnitudeA * magnitudeB);
+  
+    return cosineSimilarity;
+  };
+  
+  module.exports = { calculateCosineSimilarity };
+  
